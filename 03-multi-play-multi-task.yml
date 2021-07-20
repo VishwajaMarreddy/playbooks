@@ -1,0 +1,26 @@
+---
+- name: Update Webserver
+  hosts: group1
+
+  tasks:
+  - name: Ensure directory is created
+    file:
+      path: /home/centos/sample
+      state: directory
+  - name: Ensure file is copied
+    get_url:
+      url: https://filesamples.com/samples/document/txt/sample3.txt
+      dest: /home/centos/config.txt 
+- name: Update app server
+  hosts: group2
+
+  tasks:
+  - name: Ensure directory is created
+    file:
+      path: /home/centos/sample
+      state: directory
+  - name: Ensure file is copied
+    get_url:
+      url: https://filesamples.com/samples/document/txt/sample3.txt
+      dest: /home/centos/config.txt 
+...
