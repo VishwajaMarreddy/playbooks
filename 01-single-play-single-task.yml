@@ -1,0 +1,10 @@
+---
+- name: Update Webserver
+  hosts: group1
+
+  tasks:
+  - name: Ensure directory is created
+    file:
+      path: /home/centos/sample
+      state: directory
+...
