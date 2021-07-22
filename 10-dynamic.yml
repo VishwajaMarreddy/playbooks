@@ -1,0 +1,13 @@
+---
+- name: Update Webserver
+  hosts: group1
+  become: yes
+  vars:
+    my_user: vishwaja
+
+  tasks:
+  - name:
+    template:
+      src: dynamic.j2
+      dest: /var/www/html/dynamic.html
+...
