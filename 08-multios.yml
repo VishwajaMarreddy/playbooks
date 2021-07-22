@@ -1,0 +1,50 @@
+---
+- name: Update Webserver
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Ensure apt is updated
+    apt:
+      update_cache: yes
+    when : ansible_distribution == "Ubuntu"
+  - name: Ensure apache2 is installed
+    package:
+      name: apache2
+      state: present
+    when : ansible_distribution == "Ubuntu"
+  - name: Ensure apache2 is started
+    service:
+      name: apache2
+      state: started
+    when : ansible_distribution == "Ubuntu"
+  - name: Ensure apache2 is enabled
+    service:
+      name: apache2
+      enabled: yes
+    when : ansible_distribution == "Ubuntu"
+  - name: Ensure httpd is installed
+    package:
+      name: httpd
+      state: present
+    when : ansible_distribution == "CentOS"
+  - name: Ensure httpd is started
+    service:
+      name: httpd
+      state: started
+    when : ansible_distribution == "CentOS"
+  - name: Ensure httpd is enabled
+    service:
+      name: httpd
+      enabled: yes
+    when : ansible_distribution == "CentOS"
+
+  - name: Ensure git is installed
+    package:
+      name: git
+      state: present
+  - name: Application is downloded from git
+    git:
+      dest: /var/www/html/
+      repo: https://github.com/ravi2krishna/ecomm
+...
