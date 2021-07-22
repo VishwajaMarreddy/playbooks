@@ -1,0 +1,20 @@
+---
+- name: Update Webserver
+  hosts: group1
+  become: yes
+
+  tasks:
+  - name:
+    selinux:
+      policy: targeted 
+      state: permissive
+  - name:
+    copy:
+      src: httpd.conf 
+      dest: /etc/httpd/conf/httpd.conf
+  - name:
+    service:
+      name: httpd 
+      state: restarted
+
+...
