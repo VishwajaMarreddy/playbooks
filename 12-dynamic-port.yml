@@ -1,0 +1,22 @@
+---
+- name: Update Webserver
+  hosts: group1
+  become: yes
+  vars:
+    httpd_port: 80
+
+  tasks:
+  - name:
+    selinux:
+      policy: targeted 
+      state: permissive
+  - name:
+    template:
+      src: httpd.j2 
+      dest: /etc/httpd/conf/httpd.conf
+  - name:
+    service:
+      name: httpd 
+      state: restarted
+
+...
