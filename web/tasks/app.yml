@@ -1,0 +1,10 @@
+---
+  - name: Ensure git is installed
+    package:
+      name: git
+      state: present
+  - name: Application is downloded from git
+    git:
+      dest: /var/www/html/
+      repo: https://github.com/ravi2krishna/ecomm
+...
